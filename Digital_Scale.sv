@@ -1,4 +1,3 @@
-
 module top_module(
     input wire clk_100MHz,
     input wire DOUT,
@@ -330,7 +329,7 @@ module get_tare_and_calibration(
     reg [26:0] counter = 0;
     reg slow_clk = 0;
 
-    // Slow debounce clock setup (very similar to lab 4)
+    // Slow debounce clock setup 
     // 2.5 ms clock period (or 4Hz frequency)
     always @(posedge clk_100MHz) begin
         counter   <= (counter >= 249999) ? 0 : counter + 1; // Once counter reaches 250k, reset it to 0
@@ -338,7 +337,7 @@ module get_tare_and_calibration(
     end
 
     // For TARE button
-    wire t_q0, t_q1, t_q2, t_q2_bar; // The intermediate wire to use in debouce (similar to lab 4)
+    wire t_q0, t_q1, t_q2, t_q2_bar; // The intermediate wire to use in debouce 
     reg t_dff0, t_dff1, t_dff2; // t_dff0 is the input, t_dff1 gives time to sync, and t_dff2 is output 
 
     always @(posedge slow_clk) t_dff0 <= tare_button; // t_dff0 is the raw press
@@ -352,7 +351,7 @@ module get_tare_and_calibration(
 
 
     // For CALIB button (Near indentical to Tare's debounce code)
-    wire c_q1, c_q2, c_q2_bar; // The intermediate wire to use in debouce (similar to lab 4)
+    wire c_q1, c_q2, c_q2_bar; // The intermediate wire to use in debouce 
     reg c_dff0, c_dff1, c_dff2; // t_dff0 is the input, t_dff1 gives time to sync, and t_dff2 is output
 
     always @(posedge slow_clk) c_dff0 <= calib_button; // c_dff0 is the raw press
@@ -384,5 +383,7 @@ module get_tare_and_calibration(
     end
 
 endmodule
+
+// UART module to eventually get put here
 
 
